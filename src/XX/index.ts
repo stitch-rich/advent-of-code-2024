@@ -1,25 +1,13 @@
-// import { readFile } from 'node:fs/promises';
+import { Day } from '../Day';
 
-export const solve = async (input: string): Promise<number> => {
-  return input.length;
-};
+export class DayXX extends Day {
+  day = 'XX';
 
-// const run = async (): Promise<{
-//   answer1: number
-//   answer2: number
-// }> => {
-//   const input = await readFile('./src/XX/input.txt', {
-//     encoding: 'utf-8',
-//   });
-//   const answer1 = await solve(input);
-//   const answer2 = await solve(input);
+  doPart1(input: string[]) {
+    return input.length;
+  }
 
-//   return {
-//     answer1,
-//     answer2,
-//   };
-// };
-
-// run().then((res) => {
-//   console.log(res);
-// });
+  doPart2(input: string[]) {
+    return input.length;
+  }
+}
