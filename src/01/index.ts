@@ -1,25 +1,34 @@
-// import { readFile } from 'node:fs/promises';
+function parseInput(input: string) {
+  const left: number[] = [];
+  const right: number[] = [];
+  
+  input
+    .split('\n')
+    .forEach((line) => {
+      const [l, r] = line.split(/\s+/);
+      left.push(parseInt(l, 10));
+      right.push(parseInt(r, 10));
+    });
 
-export const solve = async (input: string): Promise<number> => {
-  return input.length;
+  return {
+    left, right,
+  };
+}
+
+export const solve1 = async (input: string): Promise<number> => {
+  const data = parseInput(input);
+  const left = data.left.sort();
+  const right = data.right.sort();
+  return left
+    .reduce((acc, val, i) => acc + Math.abs(val - right[i]), 0);
 };
 
-// const run = async (): Promise<{
-//   answer1: number
-//   answer2: number
-// }> => {
-//   const input = await readFile('./src/XX/input.txt', {
-//     encoding: 'utf-8',
-//   });
-//   const answer1 = await solve(input);
-//   const answer2 = await solve(input);
+export const solve2 = async (input: string): Promise<number> => {
+  const { left, right } = parseInput(input);
 
-//   return {
-//     answer1,
-//     answer2,
-//   };
-// };
-
-// run().then((res) => {
-//   console.log(res);
-// });
+  return left
+    .reduce((acc, val) => {
+      const matches = right.filter((r) => r === val);
+      return val * matches.length + acc;
+    }, 0);
+};
